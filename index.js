@@ -51,7 +51,7 @@ const replaceTemplate = (temp, product) => {
   const dataObj = JSON.parse(data); //JSON vers tableau
   
   const server = http.createServer((req, res) => {
-    const { query, pathname } = url.parse(req.url, true);
+    const { query, pathname } = url.parse(req.url, true);//syntaxe de ES6 url.parse(req.url, true); retourne un ensemble de variables qui contient query et pathname
   
     // Overview page
     if (pathname === '/' || pathname === '/overview') {
@@ -64,7 +64,7 @@ const replaceTemplate = (temp, product) => {
       // Product page
     } else if (pathname === '/product') {
       res.writeHead(200, {'Content-type': 'text/html'});
-      const product = dataObj[query.id];
+      const product = dataObj[query.id];// quel produit afficher 
       const output = replaceTemplate(tempProduct, product);
       res.end(output);
   
