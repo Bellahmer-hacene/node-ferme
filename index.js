@@ -1,6 +1,7 @@
 const fs = require('fs');
 const http = require('http');
 const url = require('url');
+const slugify = require('slugify');
 
 // IMPORTER NOS PROPRE modules
 const replaceTemplate = require('./modules/replaceTemplate');
@@ -46,6 +47,8 @@ const replaceTemplate = require('./modules/replaceTemplate');
   
   const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, 'utf-8');
   const dataObj = JSON.parse(data); //JSON vers tableau
+
+  const slugs = dataObj.map( el => slugify(el.productName,{lower : true}));
   
   const server = http.createServer((req, res) => {
     const { query, pathname } = url.parse(req.url, true);//syntaxe de ES6 url.parse(req.url, true); retourne un ensemble de variables qui contient query et pathname
