@@ -1,2 +1,3 @@
 *.js linguist-language=true
 *.css linguist-language=false
+*.html linguist-language=false
